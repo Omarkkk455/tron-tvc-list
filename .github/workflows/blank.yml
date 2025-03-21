@@ -26,7 +26,43 @@ TZ3ktDuTmTvV1Sv4pX6dbhPioeEx9ULgTj
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
+        # A first-level heading
+## A second-level heading
+### A third-level heading
 
+      Si se define(R.scheme) entonces
+         T.esquema = R.esquema;
+         T.autoridad = R.autoridad;
+         T.path = eliminar_segmentos_de_puntos(R.path);
+         T.consulta = R.consulta;
+      demás
+         Si se define(R.autoridad) entonces
+            T.autoridad = R.autoridad;
+            T.path = eliminar_segmentos_de_puntos(R.path);
+            T.consulta = R.consulta;
+         demás
+            si (R.path == "") entonces
+               T.path = Base.path;
+               si se define(R.query) entonces
+                  T.consulta = R.consulta;
+               demás
+                  T.consulta = Base.consulta;
+               fin si;
+            demás
+               si (R.path comienza con "/") entonces
+                  T.path = eliminar_segmentos_de_puntos(R.path);
+               demás
+                  T.path = merge(Base.path, R.path);
+                  T.path = eliminar_segmentos_de_puntos(T.path);
+               fin si;
+               T.consulta = R.consulta;
+            fin si;
+            T.autoridad = Base.autoridad;
+         fin si;
+         T.scheme = Base.scheme;
+      fin si;
+
+      T.fragmento = R.fragmento;.github/PULL_REQUEST_TEMPLATE.md.github/workflows/blank.ymlhttps://github.com/tronscan/tron-tvc-list/issues/396#issuecomment-2743196055Setland34:add-token-transfer-instructionsbc1qwd2ax52kzap77gftqmh3ul9c87fhp09xpyel8r1AvbBp3JxQ33vtrC4afjorMNUHojKFjVrT
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
