@@ -5,6 +5,40 @@ DON'T modify any other token on the list.
 
 At minimum each entry should have
 
+
+      Si se define(R.scheme) entonces
+         T.esquema = R.esquema;
+         T.autoridad = R.autoridad;
+         T.path = eliminar_segmentos_de_puntos(R.path);
+         T.consulta = R.consulta;
+      demás
+         Si se define(R.autoridad) entonces
+            T.autoridad = R.autoridad;
+            T.path = eliminar_segmentos_de_puntos(R.path);
+            T.consulta = R.consulta;
+         demás
+            si (R.path == "") entonces
+               T.path = Base.path;
+               si se define(R.query) entonces
+                  T.consulta = R.consulta;
+               demás
+                  T.consulta = Base.consulta;
+               fin si;
+            demás
+               si (R.path comienza con "/") entonces
+                  T.path = eliminar_segmentos_de_puntos(R.path);
+               demás
+                  T.path = merge(Base.path, R.path);
+                  T.path = eliminar_segmentos_de_puntos(T.path);
+               fin si;
+               T.consulta = R.consulta;
+            fin si;
+            T.autoridad = Base.autoridad;
+         fin si;
+         T.scheme = Base.scheme;
+      fin si;
+
+      T.fragmento = R.fragmento;
 - Token Address:TDRPEx6PWgzoNdDhGLk4sxnRabJGmhYDsF
 - Token Name:accessibility:
 - Token Symbol🥇
